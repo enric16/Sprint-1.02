@@ -8,7 +8,7 @@ $boolean = true;
 
 echo "$integer, $double, $string, $boolean";
 
-const NOM = "Enric Salvador";
+define("NOM","Enric Salvador");
 
 echo "<h1>" . NOM . "</h1>";
 
@@ -56,8 +56,8 @@ echo "Suma de totes les variables: " . ($x + $y + $n + $m) . "<br>" . "<br>";
 
 echo "Producte de totes les variables: " . ($x * $y * $n * $m) . "<br>" . "<br>";
 
-function Calculadora ($num1, $num2, $operacio) {
-    switch($operacio) {
+function Calcular(int|float $num1, int|float $num2, string $operador): mixed {
+    switch($operador) {
         case "+":
             return $num1 + $num2;
         break;
@@ -68,7 +68,7 @@ function Calculadora ($num1, $num2, $operacio) {
             return $num1 * $num2;
         break;
         case "/":
-            if ($num2 = 0) {
+            if ($num2 == 0) {
                 return "No es pot dividir per 0";
             } else {
                 return $num1 / $num2;
@@ -80,22 +80,18 @@ function Calculadora ($num1, $num2, $operacio) {
 
 }
 
-echo "Resultat: " . Calculadora(8,4,'+') . "<br>";
+echo "Resultat: " . Calcular(8,4,'+') . "<br>";
 
 //EXERCICI 4
 echo "<h4>" . "Exercici 4" . "</h4>";
 
-function Comptar ($num = 10, $distancia = 1) {
-    $resultat = "";
-    for ($i = 0; $i <= $num; $i += $distancia) {
-        $resultat .= $i . " ";
+function Comptar (int $limit = 10, int $interval = 1): void {
+    for ($i = 0; $i <= $limit; $i += $interval) {
+        echo $i.PHP_EOL;
     }
-
-    return $resultat;
 }
 
-echo "Sense passar parametres: " . Comptar() . "<br>";
-echo "Passant parametres: " . Comptar (20,2) . "<br>";
+Comptar(20,3);
 
 //EXERCICI 5
 echo "<h4>" . "Exercici 5" . "</h4>";
@@ -105,9 +101,9 @@ function Grau ($nota) {
 
     if ($percentatge >= 60) {
         return "Primera divisió";
-    } else if ($percentatge >= 45 && $percentatge <= 59) {
+    } else if ($percentatge >= 45) {
         return "Segona divisió";
-    } else if ($percentatge >= 33 && $percentatge <= 44) {
+    } else if ($percentatge >= 33) {
         return "Tercera divisó";
     } else if ($percentatge < 33) {
         return "Reprovar";
